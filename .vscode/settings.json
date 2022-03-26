@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"libft.h": "c"
+	},
+	"git.ignoreLimitWarning": true
+}

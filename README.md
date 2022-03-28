@@ -22,6 +22,8 @@ sudo apt install -y libssh-dev
 ## Usage :
 ./px_botnet
 
+## Demo :
+![image description](./images/demo.png)
 
 ## Tools :
  > - [Makefile](https://github.com/PandeoF1/makefile) <br />

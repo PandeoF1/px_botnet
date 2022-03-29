@@ -1,0 +1,10 @@
+Cross compiler for i586
+From http://impactlinux.com/fwl
+
+To use: Add the "bin" subdirectory to your $PATH, and use "i586-gcc" as
+your compiler.
+
+The syntax used to build the Linux kernel is:
+
+  make ARCH=i386 CROSS_COMPILE=i586-
+

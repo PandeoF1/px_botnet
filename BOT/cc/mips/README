@@ -1,0 +1,10 @@
+Cross compiler for mips
+From http://impactlinux.com/fwl
+
+To use: Add the "bin" subdirectory to your $PATH, and use "mips-gcc" as
+your compiler.
+
+The syntax used to build the Linux kernel is:
+
+  make ARCH=mips CROSS_COMPILE=mips-
+

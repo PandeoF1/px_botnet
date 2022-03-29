@@ -1,0 +1,10 @@
+Cross compiler for m68k
+From http://impactlinux.com/fwl
+
+To use: Add the "bin" subdirectory to your $PATH, and use "m68k-gcc" as
+your compiler.
+
+The syntax used to build the Linux kernel is:
+
+  make ARCH=m68k CROSS_COMPILE=m68k-
+

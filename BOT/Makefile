@@ -6,7 +6,7 @@
 #    By: tnard <tnard@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 12:35:04 by tnard             #+#    #+#              #
-#    Updated: 2022/03/29 07:25:09 by tnard            ###   ########lyon.fr    #
+#    Updated: 2022/03/29 21:51:04 by tnard            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,43 +49,43 @@ everything:
 	@rm -rf cross_compiled
 	@mkdir cross_compiled
 	@make cross=./cc/armv4l/bin/armv4l-
-	@mv $(NAME) cross_compiled/$(NAME)-armv4l
+	@mv $(NAME) cross_compiled/armv4l
 	@make fclean
 	@make cross=./cc/armv5l/bin/armv5l-
-	@mv $(NAME) cross_compiled/$(NAME)-armv5l
+	@mv $(NAME) cross_compiled/armv5l
 	@make fclean
 	@make cross=./cc/armv6l/bin/armv6l-
-	@mv $(NAME) cross_compiled/$(NAME)-armv6l
+	@mv $(NAME) cross_compiled/armv6l
 	@make fclean
 	@make cross=./cc/i586/bin/i586-
-	@mv $(NAME) cross_compiled/$(NAME)-i586
+	@mv $(NAME) cross_compiled/i586
 	@make fclean
 	@make cross=./cc/i686/bin/i686-
-	@mv $(NAME) cross_compiled/$(NAME)-i686
+	@mv $(NAME) cross_compiled/i686
 	@make fclean
 	@make cross=./cc/m68k/bin/m68k-
-	@mv $(NAME) cross_compiled/$(NAME)-m68k
+	@mv $(NAME) cross_compiled/m68k
 	@make fclean
 	@make cross=./cc/mips/bin/mips-
-	@mv $(NAME) cross_compiled/$(NAME)-mips
+	@mv $(NAME) cross_compiled/mips
 	@make fclean
 	@make cross=./cc/mipsel/bin/mipsel-
-	@mv $(NAME) cross_compiled/$(NAME)-mipsel
+	@mv $(NAME) cross_compiled/mipsel
 	@make fclean
 	@make cross=./cc/powerpc/bin/powerpc-
-	@mv $(NAME) cross_compiled/$(NAME)-powerpc
+	@mv $(NAME) cross_compiled/powerpc
 	@make fclean
 	@make cross=./cc/powerpc-440fp/bin/powerpc-440fp-
-	@mv $(NAME) cross_compiled/$(NAME)-powerpc-440fp
+	@mv $(NAME) cross_compiled/powerpc-440fp
 	@make fclean
 	@make cross=./cc/sh4/bin/sh4-
-	@mv $(NAME) cross_compiled/$(NAME)-sh4
+	@mv $(NAME) cross_compiled/sh4
 	@make fclean
 	@make cross=./cc/sparc/bin/sparc-
-	@mv $(NAME) cross_compiled/$(NAME)-sparc
+	@mv $(NAME) cross_compiled/sparc
 	@make fclean
 	@make cross=./cc/x86_64/bin/x86_64-
-	@mv $(NAME) cross_compiled/$(NAME)-x86_64
+	@mv $(NAME) cross_compiled/x86_64
 	@make fclean
 	@echo All cross compiled binaries are in cross_compiled/
 

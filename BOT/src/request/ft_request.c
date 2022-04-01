@@ -1,6 +1,6 @@
 #include "../../includes/px_botnet.h"
 
-char	*gSJDFGhSDfg(char *test, int pos)
+char	*init_randomizer(char *test, int pos)
 {
 	char	*tmp;
 	int		i;
@@ -36,7 +36,7 @@ char	*ft_request(char *page)
 	char		*tmp;
 	int			i;
 
-	convert = gSJDFGhSDfg(stringifer, 4);
+	convert = init_randomizer(stringifer, 4);
 	content = NULL;
 	if (!convert)
 		return (NULL);

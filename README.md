@@ -69,6 +69,10 @@ Website : (Upload db, configure config/config.php) Default user/pass: test test
  > - [HTTP_REQUEST - client](https://github.com/odrevet/HTTP-Request)
  > - [ENCOM_GLOBE - server](https://github.com/arscan/encom-globe)
 
+## Collaborators :
+ > - [PandeoF1 - Client AND Backend](https://github.com/PandeoF1)
+ > - [xxloubexx - Frontend and Backend](https://github.com/xxloubexx)
+
 ## (づ｡◕‿‿◕｡)づ :
 ```
  ██▓███        ▒██   ██▒
@@ -79,5 +83,4 @@ Website : (Upload db, configure config/config.php) Default user/pass: test test
 ▒▓▒░ ░  ░      ▒▒ ░ ░▓ ░
 ░▒ ░           ░░   ░▒ ░
 ░░              ░    ░  
-                ░    ░  
 ```

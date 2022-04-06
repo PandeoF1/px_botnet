@@ -15,14 +15,34 @@
 </p>
 
 ---
+## Description :
+
+This is a botnet made for educational purpose only.
+
+Based on http server and c client with cross platform support.
+
+Equiped with 11 methods - Layer 7 and Layer 4 (TCP & UDP).
+
+Based on boostrap frontend.
+
+Using Encom DOME for a nice and clean interface.
+
+
+Please note that this is a development repo, if you find some bug / segfault...
+
+Please provide a pull request.
+
+
+Some script are based on random project from internet.
+
+So they are not tested at 100%.
+
 ## Setup :
 
 Server :
 
 ```
-
 (sudo) apt install apache2 php mariadb-server mariadb-client php php-cli php-fpm php-json php-pdo php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear php-bcmath
-
 ```
 
 Client :
@@ -40,7 +60,6 @@ Edit includes/px_botnet.h - stringifer with your url hided
 make re
 
 If you want to cross compile custom Makefile at line 82 with a "." before "$(cross)" and use : "make everything"
-
 ```
 
 ## Usage :
@@ -53,7 +72,8 @@ Website : (Upload db, configure config/config.php) Default user/pass: test test
  > - [Makefile](https://github.com/PandeoF1/makefile) <br />
 
 ## Sources :
- > - [HTTP_REQUEST](https://github.com/odrevet/HTTP-Request)
+ > - [HTTP_REQUEST - client](https://github.com/odrevet/HTTP-Request)
+ > - [ENCOM_GLOBE - server](https://github.com/arscan/encom-globe)
 
 ## (づ｡◕‿‿◕｡)づ :
 ```

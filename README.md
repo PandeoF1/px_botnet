@@ -25,7 +25,7 @@ Using Encom DOME for a nice and clean interface. <br />
 
 
 Please note that this is a development repo, if you find some bug / segfault... <br />
-Please provide a pull request.
+Please provide a pull request / Issues.
 
 
 Some script are based on random project from internet. <br />
@@ -42,7 +42,7 @@ Or you can try to made a fork/pull requests of this project and adapt it for win
 
 Server :
 
-```
+```bash
 (sudo) apt install apache2 php mariadb-server mariadb-client php php-cli php-fpm php-json php-pdo php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear php-bcmath
 ```
 
@@ -61,7 +61,7 @@ Edit includes/px_botnet.h
 
 make re
 
-If you want to cross compile custom Makefile at line 82 with a "." before "$(cross)" and use : "make everything"
+If you want to cross compile, edit `Makefile` at line 82 with a "." before "$(cross)" and use : "make everything"
 ```
 
 ## Usage :

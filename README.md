@@ -25,7 +25,7 @@ Using Encom DOME for a nice and clean interface. <br />
 
 
 Please note that this is a development repo, if you find some bug / segfault... <br />
-Please provide a pull request.
+Please provide a pull request / Issues.
 
 
 Some script are based on random project from internet. <br />

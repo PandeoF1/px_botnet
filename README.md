@@ -33,9 +33,9 @@ So they are not tested at 100%.
 
 This project is a fork of [Crunchrat](https://github.com/erikbarzdukas/CrunchRAT) <br />
 But i have made some changes to make it more usable. <br />
-I have remove the C# client to replace it by a c client to make it cross platform and more easly to use. <br />
+I have remove the C# client to replace it by a C client to make it cross platform and more easly to use. <br />
 If you want to use it on windows, you can use the C# client but you will need to adapt the new api. <br />
-Or you can try to made a fork/pull requests of this project and adapt it for windows ;p .
+Or you can try to made a fork/pull requests of this project and adapt it for windows ;p !
 
 
 ## Setup :

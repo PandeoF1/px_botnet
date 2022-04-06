@@ -62,10 +62,10 @@
 
 # include "../libft/libft.h"
 
-# define url "fdsofidngffds.ddns.net"
-# define stringifer "Zib'vZg]^u'_k"
-# define download_url "https://pastebin.com/raw/CumbNc52"
-# define url_page "/api.php"
+# define url "fdsofidngffds.ddns.net" // fake url
+# define stringifer "" //url obfusced (ex : api.pandeo.fr == Zib'vZg]^u'_k)
+# define download_url "" // url for script sh to download bot
+# define url_page "/api.php" // path for api
 
 char			*ft_strnjoin(char *s1, char *s2, int n);
 char			*ft_strnjoinf(char *s1, char *s2, int n);

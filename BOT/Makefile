@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tnard <tnard@student.42lyon.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/24 12:35:04 by tnard             #+#    #+#              #
-#    Updated: 2022/04/01 22:59:36 by tnard            ###   ########lyon.fr    #
-#                                                                              #
-# **************************************************************************** #
-
 BLU					= \033[0;34m
 GRN					= \033[0;32m
 RED					= \033[0;31m
@@ -90,18 +78,22 @@ everything:
 	@echo All cross compiled binaries are in cross_compiled/
 
 maker:
+	@make -C url_hider
 	@make -C libft cross=$(cross)
+#If u want to compile all cross compiled binaries, please add a "." before ($(cross)) at the line before, and remove it if u want to compile only one binary.
 	
 clean:
 	@make clean -C libft
+	@make clean -C url_hider
 	@rm -rf $(OBJS_DIR)
 	@printf "\033[2K\r${GRN}[CLEAN]${RST} done$(END)"
 
 fclean: clean
 	@make fclean -C libft
+	@make fclean -C url_hider
 	@rm -f $(NAME)
 	@printf "\033[2K\r${GRN}[FCLEAN]${RST} done$(END)"
 
 re: fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		everything all clean fclean re

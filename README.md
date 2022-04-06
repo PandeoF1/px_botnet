@@ -35,7 +35,7 @@ So they are not tested at 100%.
 
 Server :
 
-```
+```bash
 (sudo) apt install apache2 php mariadb-server mariadb-client php php-cli php-fpm php-json php-pdo php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear php-bcmath
 ```
 
@@ -54,7 +54,7 @@ Edit includes/px_botnet.h
 
 make re
 
-If you want to cross compile custom Makefile at line 82 with a "." before "$(cross)" and use : "make everything"
+If you want to cross compile, edit `Makefile` at line 82 with a "." before "$(cross)" and use : "make everything"
 ```
 
 ## Usage :

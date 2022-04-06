@@ -17,18 +17,18 @@
 ---
 ## Description :
 
-This is a botnet made for educational purpose only.
-Based on http server and c client with cross platform support.
-Equiped with 11 methods - Layer 7 and Layer 4 (TCP & UDP).
-Based on boostrap frontend.
-Using Encom DOME for a nice and clean interface.
+This is a botnet made for educational purpose only. <br />
+Based on http server and c client with cross platform support. <br />
+Equiped with 11 methods - Layer 7 and Layer 4 (TCP & UDP). <br />
+Based on boostrap frontend. <br />
+Using Encom DOME for a nice and clean interface. <br />
 
 
-Please note that this is a development repo, if you find some bug / segfault...
+Please note that this is a development repo, if you find some bug / segfault... <br />
 Please provide a pull request.
 
 
-Some script are based on random project from internet.
+Some script are based on random project from internet. <br />
 So they are not tested at 100%.
 
 ## Setup :

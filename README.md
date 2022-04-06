@@ -71,8 +71,8 @@ Website : (Upload db, configure config/config.php) Default user/pass: test test
  > - [ENCOM_GLOBE - server](https://github.com/arscan/encom-globe)
 
 ## Collaborators :
- > - [PandeoF1 - Client AND Backend](https://github.com/PandeoF1)
- > - [xxloubexx - Frontend and Backend](https://github.com/xxloubexx)
+ > - [PandeoF1 - Client & Backend](https://github.com/PandeoF1)
+ > - [xxloubexx - Frontend & Backend](https://github.com/xxloubexx)
 
 ## (づ｡◕‿‿◕｡)づ :
 ```

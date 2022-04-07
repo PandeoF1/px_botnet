@@ -7,11 +7,11 @@
 </p>
 
 <p align="center">
-	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/PandeoF1/42-cub3d?color=blueviolet" />
-	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/PandeoF1/42-cub3d?color=blueviolet" />
-	<img alt="Code language count" src="https://img.shields.io/github/languages/count/PandeoF1/42-cub3d?color=blue" />
-	<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/PandeoF1/42-cub3d?color=blue" />
-	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/PandeoF1/42-cub3d?color=brightgreen" />
+	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/PandeoF1/px_botnet?color=blueviolet" />
+	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/PandeoF1/px_botnet?color=blueviolet" />
+	<img alt="Code language count" src="https://img.shields.io/github/languages/count/PandeoF1/px_botnet?color=blue" />
+	<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/PandeoF1/px_botnet?color=blue" />
+	<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/PandeoF1/px_botnet?color=brightgreen" />
 </p>
 
 ---

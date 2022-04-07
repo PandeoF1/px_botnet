@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-	<b><i>Development repo for educational purpose only (Made for fun)!</i></b><br>
+	<b><i>Development repo for educational purpose only (Made for fun) !</i></b><br>
 </p>
 
 <p align="center">

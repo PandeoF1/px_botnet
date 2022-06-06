@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/nard/px_botnet'
+make: Leaving directory '/home/nard/px_botnet'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

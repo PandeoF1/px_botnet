@@ -1,0 +1,33 @@
+{
+  "name": "encom-globe",
+  "version": "0.5.4",
+  "description": "encom-globe",
+  "main": "src/Globe.js",
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "grunt": "^1.4.1",
+    "grunt-browserify": "^6.0.0",
+    "grunt-contrib-uglify": "^5.1.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-shell": "^4.0.0",
+    "minimist": "^1.2.6",
+    "pngjs": "~0.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/arscan/encom-globe.git"
+  },
+  "author": "robscanlon@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "hexasphere.js": "*",
+    "pusher.color": "~0.2.4",
+    "quadtree2": "~0.5.3",
+    "three": "0.125.0",
+    "tween.js": "~0.13.0",
+    "vec2": "~1.5.0"
+  }
+}

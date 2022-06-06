@@ -68,7 +68,6 @@ Open bash under docker :
 ```bash
 make bash
 ```
-Go to ip:80
 
 Client :
 

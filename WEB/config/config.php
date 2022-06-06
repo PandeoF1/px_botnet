@@ -6,13 +6,13 @@ $downloadsPath = "";
 $dbHost = "localhost";
 
 # Don't change
-$dbName = "db";
+$dbName = "px_base";
 
 # Don't change
-$dbUser = "user";
+$dbUser = "px_user";
 
 # Change
-$dbPass = "pass";
+$dbPass = "px_pass";
 
 $dbConnection = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 // Reset connected bot if date += 30 secondes

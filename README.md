@@ -61,12 +61,12 @@ Now configure config/config.php with the same credentials of the mysql part.
 
 Server (Under Docker) (Configuration is inside docker-compose.yml) :
 ```bash
-cd ./DOCKER
-make
+       cd ./DOCKER
+(sudo) make
 ```
 Open bash under docker :
 ```bash
-make bash
+(sudo) make bash
 ```
 
 Client :

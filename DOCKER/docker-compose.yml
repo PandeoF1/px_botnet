@@ -1,14 +1,5 @@
 version: "3.5"
 
-volumes:
-  db:
-    driver: local
-    name: db
-    driver_opts:
-      type: none
-      o: bind
-      device: ./volumes/mysql
-
 services:
   px_server:
     container_name: px_server

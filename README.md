@@ -61,14 +61,13 @@ Now configure config/config.php with the same credentials of the mysql part.
 
 Server (Under Docker) (Configuration is inside docker-compose.yml) :
 ```bash
-cd ./DOCKER
-make
+       cd ./DOCKER
+(sudo) make
 ```
 Open bash under docker :
 ```bash
-make bash
+(sudo) make bash
 ```
-Go to ip:80
 
 Client :
 
@@ -77,7 +76,7 @@ Client :
 
 cd BOT && make
 
-cd url_hider && ./url_hider "your url"
+cd url_hider && ./url_hider "your url without http ex : api.pandeo.fr"
 
 Edit includes/px_botnet.h 
                           - stringifer with your url hided

@@ -1,25 +1,14 @@
-#ifndef _XT_MARK_H_target
-#define _XT_MARK_H_target
+#ifndef _XT_MARK_H
+#define _XT_MARK_H
 
-/* Version 0 */
-struct xt_mark_target_info {
-	unsigned long mark;
+struct xt_mark_info {
+    unsigned long mark, mask;
+    u_int8_t invert;
 };
 
-/* Version 1 */
-enum {
-	XT_MARK_SET=0,
-	XT_MARK_AND,
-	XT_MARK_OR,
-};
-
-struct xt_mark_target_info_v1 {
-	unsigned long mark;
-	u_int8_t mode;
-};
-
-struct xt_mark_tginfo2 {
+struct xt_mark_mtinfo1 {
 	u_int32_t mark, mask;
+	u_int8_t invert;
 };
 
-#endif /*_XT_MARK_H_target */
+#endif /*_XT_MARK_H*/

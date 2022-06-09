@@ -4,7 +4,7 @@ services:
   px_server:
     container_name: px_server
     build:
-      context: ./build/
+      context: ./BUILD/
       args:
        - DB_LOGIN_A=px_user
        - DB_PASSWORD_A=px_pass

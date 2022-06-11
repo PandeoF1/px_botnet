@@ -278,6 +278,7 @@ else {
 											<div class="col-6">
 												<input type="text" class="form-control mb-1" name="ip" placeholder="ip">
 												<input type="text" class="form-control mb-1" name="port" placeholder="port">
+												<!-- HTTPFRM -->
 												<div id="httpfrm" hidden">
 													<input type="text" class="form-control mb-1" name="path" placeholder="path">
 													<select class="form-select mb-1" name="method">
@@ -285,6 +286,7 @@ else {
 														<option value="GET">GET</option>
 														<option value="POST">POST</option>
 														<option value="POST">HEAD</option>
+														<option value="POST">CONNECT</option>
 													</select>
 													Power : <label for="time" id="powerlabel" class="form-label">10</label>
 													<input type="range" name="power" value="10" class="form-range" min="10" max="100" step="1" id="power" oninput="document.getElementById('powerlabel').innerHTML = document.getElementById('power').value">

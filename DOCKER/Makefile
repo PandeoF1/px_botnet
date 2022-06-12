@@ -17,7 +17,7 @@ top:
 	@docker-compose top
 
 bash:
-	@docker-compose exec bash
+	@docker-compose exec px_server bash
 
 ps:
 	@docker-compose ps

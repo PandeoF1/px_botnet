@@ -277,7 +277,7 @@ else {
 												</select>
 											</div>
 											<div class="col-6">
-												<input type="text" class="form-control mb-1" name="ip" placeholder="ip">
+												<input type="text" class="form-control mb-1" name="ip" placeholder="ip or FQDN (without http(s):// or slash)">
 												<input type="text" class="form-control mb-1" name="port" placeholder="port">
 												<!-- HTTPFRM -->
 												<div id="httpfrm" hidden">

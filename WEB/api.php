@@ -70,11 +70,11 @@
 				echo "-api";
 				$statement = $dbConnection->prepare("DELETE FROM `tasks` WHERE `id` = :id");
 				$statement->bindValue(":id", $row["id"]);
-				#$statement->execute();
-				#header('Location: /'); 
+				$statement->execute();
+				header('Location: /'); 
 				exit(0);
 			}
 		}
 	}
-	#header('Location: /'); 
+	header('Location: /'); 
 ?>

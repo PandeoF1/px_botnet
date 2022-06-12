@@ -237,6 +237,7 @@ else {
 										<option value="RANDHEX">RandHex</option>
 										<option value="STD">STD</option>
 										<option value="" disabled>--------L.7--------</option>
+										<option value="PPS">PPS</option>
 										<option value="HTTP">HTTP</option>
 										<option value="OVHL7">OVHL7</option>
 									</select>
@@ -288,10 +289,48 @@ else {
 														<option value="POST">HEAD</option>
 														<option value="POST">CONNECT</option>
 													</select>
+												</div>
+												<!-- END HTTPFRM -->
+												<!-- POWERFRM -->
+												<div id="powerfrm" hidden">
 													Power : <label for="time" id="powerlabel" class="form-label">10</label>
 													<input type="range" name="power" value="10" class="form-range" min="10" max="100" step="1" id="power" oninput="document.getElementById('powerlabel').innerHTML = document.getElementById('power').value">
-
 												</div>
+												<!-- END POWERFRM -->
+												<!-- TCPFRM -->
+												<div id="tcpfrm" hidden">
+													Methods : <input class="form-check-input" type="checkbox" value="syn" name="checkboxes[]">
+													<label class="form-check-label" for="flexCheckDefault">
+														syn
+													</label>&nbsp;
+													<input class="form-check-input" type="checkbox" value="rst" name="checkboxes[]">
+													<label class="form-check-label" for="flexCheckDefault">
+														rst
+													</label>&nbsp;
+													<input class="form-check-input" type="checkbox" value="fin" name="checkboxes[]">
+													<label class="form-check-label" for="flexCheckDefault">
+														fin
+													</label>&nbsp;
+													<input class="form-check-input" type="checkbox" value="ack" name="checkboxes[]">
+													<label class="form-check-label" for="flexCheckDefault">
+														ack
+													</label>&nbsp;
+													<input class="form-check-input" type="checkbox" value="psh" name="checkboxes[]">
+													<label class="form-check-label" for="flexCheckDefault">
+														psh
+													</label>
+												</div>
+												<!-- END TCPFRM -->
+												<!-- UDPFRM -->
+												<div id="udpfrm" hidden">
+													<input class="form-check-input" type="checkbox" value="spoofit" name="spoofit">
+													<label class="form-check-label" for="flexCheckDefault">
+														Spoofit
+													</label><br>
+													PacketSize : <label for="time" id="packetsizelabel" class="form-label">1</label>
+													<input type="range" name="packetsize" value="1" class="form-range" min="1" max="1023" step="1" id="packetsize" oninput="document.getElementById('packetsizelabel').innerHTML = document.getElementById('packetsize').value">
+												</div>
+												<!-- END UDPFRM -->
 												Time : <label for="time" id="timespan" class="form-label">10</label>
 												<input type="range" name="time" value="10" class="form-range" min="10" max="300" step="1" id="time" oninput="document.getElementById('timespan').innerHTML = document.getElementById('time').value">
 											</div>
@@ -316,8 +355,29 @@ else {
 								document.getElementById('seltask').value = select.value;
 								if (select.value == "HTTP") {
 									document.getElementById('httpfrm').style.display = "block";
+									document.getElementById('powerfrm').style.display = "block";
+									document.getElementById('udpfrm').style.display = "none";
+									document.getElementById('tcpfrm').style.display = "none";
+								} else if (select.value == "PPS" || select.value == "OVHL7") {
+									document.getElementById('httpfrm').style.display = "none";
+									document.getElementById('powerfrm').style.display = "block";
+									document.getElementById('udpfrm').style.display = "none";
+									document.getElementById('tcpfrm').style.display = "none";
+								} else if (select.value == "UDP") {
+									document.getElementById('httpfrm').style.display = "none";
+									document.getElementById('powerfrm').style.display = "none";
+									document.getElementById('udpfrm').style.display = "block";
+									document.getElementById('tcpfrm').style.display = "none";
+								} else if (select.value == "TCP") {
+									document.getElementById('httpfrm').style.display = "none";
+									document.getElementById('powerfrm').style.display = "none";
+									document.getElementById('udpfrm').style.display = "block";
+									document.getElementById('tcpfrm').style.display = "block";
 								} else {
 									document.getElementById('httpfrm').style.display = "none";
+									document.getElementById('powerfrm').style.display = "none";
+									document.getElementById('udpfrm').style.display = "none";
+									document.getElementById('tcpfrm').style.display = "none";
 								}
 							}
 						}

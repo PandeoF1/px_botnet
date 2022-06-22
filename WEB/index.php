@@ -247,8 +247,10 @@ else {
 											$statement->execute();
 
 											$allbots = $statement->rowCount();
-
-											$percentage = round((($bot / $allbots) * 100), 0);
+											if ($allbots == 0)
+												$percentage = 0;
+											else
+												$percentage = round((($bot / $allbots) * 100), 0);
 											?>
 											<div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Connected bot / Total bot</span></div>
 											<div class="row g-0 align-items-center">

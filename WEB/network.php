@@ -193,7 +193,7 @@ else {
                                                 //$load = $rs[$interval];
                                                 //$cpu = round(($load * 100) / $coreCount,2);
                                                 ?>
-                                                <div class="text-dark font-weight-bold h5 mb-0"><span><?php echo $load ?> %</span></div>
+                                                <div class="text-dark font-weight-bold h5 mb-0"><span>(Desactivated)</span></div>
                                             </div>
                                             <div class="col-auto"><i class="fas fa-burn fa-2x text-gray-300"></i></div>
                                         </div>
@@ -229,30 +229,8 @@ else {
                                         <div class="row align-items-center no-gutters">
                                             <div class="col mr-2">
                                                 <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>HTTP connection</span></div>
-                                                <?php
-                                                $www_total_count = 0;
-                                                @exec('netstat -an | egrep \':80|:443\' | awk \'{print $5}\' | grep -v \':::\*\' |  grep -v \'0.0.0.0\'', $results);
-
-                                                foreach ($results as $result) {
-                                                    $array = explode(':', $result);
-                                                    $www_total_count++;
-
-                                                    if (preg_match('/^::/', $result)) {
-                                                        $ipaddr = $array[3];
-                                                    } else {
-                                                        $ipaddr = $array[0];
-                                                    }
-
-                                                    if (!in_array($ipaddr, $unique)) {
-                                                        $unique[] = $ipaddr;
-                                                        $www_unique_count++;
-                                                    }
-                                                }
-
-                                                unset($results);
-
-                                                ?>
-                                                <div class="text-dark font-weight-bold h5 mb-0"><span><?php echo count($unique) ?></span></div>
+                                               
+                                                <div class="text-dark font-weight-bold h5 mb-0"><span>(Desactivated)</span></div>
                                             </div>
                                             <div class="col-auto"><i class="fas fa-cogs fa-2x text-gray-300"></i></div>
                                         </div>

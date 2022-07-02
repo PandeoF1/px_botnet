@@ -125,7 +125,7 @@ else {
                                     <tbody id="table_body">
                                         <?php
                                         # Gets everything from "output" table
-                                        $statement = $dbConnection->prepare("SELECT id, user, hostname, action, secondary FROM output");
+                                        $statement = $dbConnection->prepare("SELECT id, user, hostname, action, secondary, status FROM output");
                                         $statement->execute();
                                         $results = $statement->fetchAll();
 

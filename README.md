@@ -98,7 +98,6 @@ Bot: Execute the binaries on the computer of the victim
  > - [Makefile](https://github.com/PandeoF1/makefile) <br />
 
 ## Sources :
- > - [HTTP_REQUEST - client](https://github.com/odrevet/HTTP-Request)
  > - [ENCOM_GLOBE - server](https://github.com/arscan/encom-globe)
 
 ## Collaborators :
